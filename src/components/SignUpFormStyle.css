@@ -96,4 +96,73 @@ top: 628px;
 
 background: #D9D9D9;
 }
+.jobButton{
+    /* I want a job */
+
+
+position: absolute;
+width: 163px;
+height: 22px;
+left: 141px;
+top: 636px;
+
+font-family: 'Helvetica';
+font-style: normal;
+font-weight: 400;
+font-size: 24px;
+line-height: 28px;
+
+color: #284585;
+}
+.hireButton{
+    /* I want to hire */
+
+
+position: absolute;
+width: 180px;
+height: 24px;
+left: 336px;
+top: 636px;
+
+font-family: 'Helvetica';
+font-style: normal;
+font-weight: 400;
+font-size: 24px;
+line-height: 28px;
+
+color: #284585;
+}
+
+.submitButton{
+    /* Rectangle 4 */
+
+
+position: absolute;
+width: 397px;
+height: 89px;
+left: 118px;
+top: 681px;
+
+background: #284585;
+
+
+font-family: 'Helvetica';
+font-style: normal;
+font-weight: 400;
+font-size: 24px;
+line-height: 28px;
+
+color: #EBEBEB;
+
+}
+.submitButton:hover{
+    background-color: cadetblue;
+}
+.signUpImage{
+    position: absolute;
+width: 729px;
+height: 765px;
+left: 723px;
+top: 29px;
+}
 
