@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./SignUpFormStyle.css"
 
-import cartoon from "/Users/atulraman/Downloads/JobListingFrontend/job-listing-frontend/src/images/Screen Shot 2022-06-14 at 8.53.56 AM.png"
+
 async function waitForResponse(user) {
   let response = await fetch("https://job-listing-rest.herokuapp.com/api/createUser",{
         method: "POST",
@@ -53,7 +53,7 @@ function SignUpForm() {
 
           </form>
           
-          <img className="signUpImage" src={cartoon} alt="cartoonLogo" height="20" width="20"></img>
+          <img className="signUpImage" src="https://i.ibb.co/MRTGZc5/Screen-Shot-2022-06-14-at-8-53-56-AM.png" alt="cartoonLogo" height="20" width="20"></img>
 
           
           
