@@ -35,12 +35,12 @@ function SignUpForm() {
       if(document.getElementById('job').checked) {
         userType = 2
         const user = {email,password,userType}
-      waitForResponse(user)
+        waitForResponse(user)
       }
       else if(document.getElementById('hire').checked){
         userType = 1
         const user = {email,password,userType}
-      waitForResponse(user)
+        waitForResponse(user)
       }
       else{
         console.log("please fill out user type")
