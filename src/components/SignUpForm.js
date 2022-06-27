@@ -1,9 +1,12 @@
-import React, { useState } from "react";
-import "./SignUpFormStyle.css"
+import React, { useEffect, useState } from "react";
+import Button from "./Button";
+import InputBox from "./InputBox";
+import Error from "./Error";
+import { RadioGroup, RadioButton } from 'react-radio-buttons';
 
 
 async function waitForResponse(user) {
-  let response = await fetch("https://job-listing-rest.herokuapp.com/api/createUser",{
+  let response = await fetch("http://localhost:8080/api/createUser",{
         method: "POST",
         headers: {"Content-Type":"application/json"},
         body: JSON.stringify(user)
@@ -25,48 +28,54 @@ function SignUpForm() {
     const[email,setEmail] = useState('')
     const[password,setPassword] = useState('')
     const[reType,setRetype] = useState('')
-    const [emailError, setEmailError] = useState("");
-    const [passwordError, setPasswordError] = useState("");
-    const [reTypeError, setRetypeError] = useState("");
+   
+    const [passwordBorder,setPasswordBorder] = useState('2px solid black')
+    const [reenterBorder,setReenterBorder] = useState('2px solid black')
+    const [emailBorder,setEmailBorder] = useState('2px solid black')
+    const [jobType,setJobType] = useState(0)
+
+    var errors = [];
 
     var userType = 0
-
     
+    
+    function handleRadio(value){
+      setJobType(value)
+    }
     const handleClick=(e)=>{
       
-      setRetypeError("")
-      setEmailError("")
-      setPasswordError("")
 
       e.preventDefault()
       if(reType !== password){
-        var element =  document.getElementsByClassName("reenterPasswordInput")[0].style.border = '1px solid #EC9E58';
-        var element =  document.getElementsByClassName("passwordInput")[0].style.border = '1px solid #EC9E58';
-        setRetypeError("Passwords must match")
+        setPasswordBorder('2px solid #EC9E58');
+        setReenterBorder('2px solid #EC9E58');
+        errors.push("Passwords must match");
         console.log("Passwords must match")
 
       }
       if(email.length == 0){
-        setEmailError("Please fill out email field")
-        
-
-        var element =  document.getElementsByClassName("emailInput")[0].style.border = '1px solid #EC9E58';
+        errors.push("Please fill out email field");
+        setEmailBorder('2px solid #EC9E58');
 
         console.log("Please fill out email field")
 
+
+
       }
       if(password.length == 0){
-        var element =  document.getElementsByClassName("passwordInput")[0].style.border = '1px solid #EC9E58';
-        setPasswordError("Please fill out password field")
+        errors.push("Please fill out password field");
+
+        setPasswordBorder('2px solid #EC9E58');
+
         console.log("Please fill out password field")
       }
       else{
-      if(document.getElementById('job').checked) {
+      if(jobType == 2) {
         userType = 2
         const user = {email,password,userType}
         waitForResponse(user)
       }
-      else if(document.getElementById('hire').checked){
+      else if(jobType == 1){
         userType = 1
         const user = {email,password,userType}
         waitForResponse(user)
@@ -82,35 +91,34 @@ function SignUpForm() {
     }
 
     return (
-      <div>
-          <h1 className="signUpTitle">Sign Up</h1>
-          <p className="createAccount">Create an account or log in</p>
-          <form >
-              <input type="text" className="emailInput" placeholder="email" value={email} id="emailInput" onChange={(e)=>setEmail(e.target.value)} ></input>
-              <p className="emailError"> {emailError} </p>
-              <input type="text" className="passwordInput" placeholder="password" value={password} onChange={(e)=>setPassword(e.target.value)} ></input>
-              <p className="passwordError"> {passwordError} </p>
+      <form>
+      <div className="form">
+        <div>
+        <InputBox className="emailInput" placeholder="email" value={email} id="emailInput" onChange={(e)=>setEmail(e.target.value)} style={{border:emailBorder}}></InputBox>
+        </div>
+        <div>
+        <InputBox className="passwordInput" placeholder="password" value={password} id="passwordInput" onChange={(e)=>setPassword(e.target.value)} style={{border:passwordBorder}}></InputBox>
+        </div>
 
-              <input type="text" className="reenterPasswordInput" placeholder="re-enter password" onChange={(e)=>setRetype(e.target.value)}></input>
-              <p className="reTypeError"> {reTypeError} </p>
-
-              <label className="jobButton"><input id="job" type="radio" name="radio" value="2"></input>I want a job</label>
-              <label className="hireButton"><input id="hire"type="radio" name="radio" value="1"></input>I want to hire</label>
-              <input className="submitButton"type="submit" value="submit" onClick={handleClick}/>
-
-              
-               
-
-
-
-
-          </form>
-          
-          <img className="signUpImage" src="https://i.ibb.co/MRTGZc5/Screen-Shot-2022-06-14-at-8-53-56-AM.png" alt="cartoonLogo" height="20" width="20"></img>
-
-          
-          
-      </div>
+        <div>
+        <InputBox className="reenterPasswordInput" placeholder="re-enter password" value={password} id="reenterInput" onChange={(e)=>setRetype(e.target.value)} style={{border:reenterBorder}}></InputBox>
+        
+        </div>
+        <div style={{width:"120%"}}>
+        <RadioGroup onChange={handleRadio} horizontal>
+  <RadioButton value="2" pointColor="black">
+    I want a job
+  </RadioButton>
+  <RadioButton value="1" pointColor>
+    I want to hire
+  </RadioButton>
+      </RadioGroup>
+        </div>
+        <div>
+          <Button text="submit" value="submit" onClick={handleClick}></Button>
+        </div>
+        </div>
+      </form>
       
     );
 

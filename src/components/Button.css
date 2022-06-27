@@ -1,0 +1,27 @@
+.button{
+    top:0;
+    left:0;
+    width: 116%;
+    height:100%;
+    border: 2px solid black;
+    border-radius: 0.2rem;
+    font-family: inherit;
+    font-size: inherit;
+    color: black;
+    outline: none;
+    padding: 1.25rem;
+    padding-left: 45%;
+    background: none;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    text-align: right;
+
+    
+}
+.button:hover{
+    background-color: #EDF2F4;
+    cursor: pointer;
+}
+
+

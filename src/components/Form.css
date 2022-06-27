@@ -1,0 +1,25 @@
+body{
+    font-family: "Convergence",sans-serif;
+    height:100vh;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    background-color: aliceblue;
+}
+.title{
+    text-align: center;
+    margin-left: 50px;
+    padding:10px;
+    font-size: 130%;
+
+}
+.loginText{
+    color: black;
+}
+
+
+.loginText:hover{
+    color: #EF233C;
+    cursor: pointer;
+}
