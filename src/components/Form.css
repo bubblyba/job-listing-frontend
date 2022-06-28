@@ -19,7 +19,18 @@ body{
 }
 
 
-.loginText:hover{
+
+.loginButton { 
+    font-family: "Convergence",sans-serif;
+    cursor: pointer;
+    background:none; 
+    border:none; 
+    font-size: 21px;
+    text-decoration:underline;
+
+
+}
+.loginButton:hover{
     color: #EF233C;
     cursor: pointer;
 }
