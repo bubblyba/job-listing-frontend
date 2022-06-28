@@ -165,7 +165,7 @@ function SignUpForm() {
         <div><Error message={userTypeError}/></div>
 
         <div>
-          <Button text="Login" value="submit" onClick={handleClick}></Button>
+          <Button text="Sign Up" value="submit" onClick={handleClick}></Button>
         </div>
         <div>
         
