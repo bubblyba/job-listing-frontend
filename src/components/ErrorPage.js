@@ -1,6 +1,6 @@
-function ErrorPage(){
+function ErrorPage(props){
     return(
-        <div>ERROR Page not found</div>
+        <div>Error {props.message}</div>
     );
 
 }

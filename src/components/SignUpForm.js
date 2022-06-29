@@ -3,30 +3,59 @@ import Button from "./Button";
 import InputBox from "./InputBox";
 import Error from "./Error";
 import { RadioGroup, RadioButton } from 'react-radio-buttons';
+import validator from 'validator'
+import ErrorPage from "./ErrorPage";
+import { useNavigate } from "react-router-dom";
 
 
-async function waitForResponse(user) {
-  let response = await fetch("https://job-listing-rest.herokuapp.com/api/createUser",{
-        method: "POST",
-        headers: {"Content-Type":"application/json"},
-        body: JSON.stringify(user)
 
-    })
-    .then (response=>response.text())
-    if(response !== "User created"){
-      console.log(response)
-
-    }
-    
-    else{
-    console.log("User created")
-    }
-  
-  }
   
   
 function SignUpForm() {
+  let navigate = useNavigate(); 
+ 
 
+  async function waitForResponse(user) {
+    let response = await fetch("https://job-listing-rest.herokuapp.com/api/createUser",{
+          method: "POST",
+          headers: {"Content-Type":"application/json"},
+          body: JSON.stringify(user)
+  
+      })
+      .catch((error) => {
+        console.log(error + "sfd")
+        
+        navigate("/internal")
+
+      })
+      .then (response=>response.text())
+      console.log(response)
+      if(response !== "User created"){
+        if(response === "Invalid Email"){
+        setEmailError('Invalid Email');
+        }
+        else if(response === "Invalid Email"){
+          setEmailError(response);
+          }
+        else if(response === "password must be at least 6 characters long"){
+          setPasswordError(response);
+
+        }
+        else if(response === "User already exists"){
+          setEmailError(response);
+
+        }
+  
+        console.log(response)
+  
+      }
+      
+      else{
+      console.log("User created")
+      }
+      
+    
+    }
     const[email,setEmail] = useState('')
     const[password,setPassword] = useState('')
     const[reType,setRetype] = useState('')
@@ -40,7 +69,54 @@ function SignUpForm() {
     const[emailError, setEmailError] = useState('');
     const[reenterPasswordError, setReenterPasswordError] = useState('');
     const[userTypeError, setUserTypeError] = useState('');
+    
+     useEffect(() => {
+      if(password.length < 6){
+        setPasswordError("password must be at least 6 characters long")
+        setPasswordBorder('2px solid #EC9E58');
 
+      }
+      else if(password.length === 0){
+        setPasswordError('Please fill out password field')
+        setPasswordBorder('2px solid #EC9E58');
+
+      }
+      else{
+        setPasswordBorder('2px solid black');
+
+        setPasswordError('')
+
+      }
+      if(validator.isEmail(email)){
+        setEmailBorder('2px solid black');
+
+        setEmailError('')
+      }
+      else{
+        setEmailBorder('2px solid #EC9E58');
+
+        setEmailError('Please enter a valid email')
+      }
+    },[password,email]);
+    function checkLength(){
+      console.log(password.length)
+      if(password.length < 5){
+        setPasswordError("password must be at least 6 characters long")
+        setPasswordBorder('2px solid #EC9E58');
+
+      }
+      else if(password.length === 0){
+        setPasswordError('Please fill out password field')
+        setPasswordBorder('2px solid #EC9E58');
+
+      }
+      else{
+        setPasswordBorder('2px solid black');
+
+        setPasswordError('')
+
+      }
+    }
     var userType = 0
     React.useEffect(() => {
       console.log("page initial render");
@@ -61,7 +137,10 @@ function SignUpForm() {
 
 
       console.log("clicked")
-      
+      if(password.length < 5){
+        setPasswordError("password must be at least 6 characters long")
+        setPasswordBorder('2px solid #EC9E58');
+      }
       e.preventDefault()
       if(reType == password){
         setReenterBorder('2px solid black');
@@ -91,7 +170,7 @@ function SignUpForm() {
 
       }
       
-
+else{
         
       if(jobType == 2) {
         userType = 2
@@ -113,7 +192,7 @@ function SignUpForm() {
         setUserTypeError("Please fill out user type")
         console.log("Please fill out user type")
       }
-     
+    }
 
 
     
@@ -121,6 +200,11 @@ function SignUpForm() {
     
       
     }
+    function checkLengthUpdatePassword(e){
+      checkLength()
+      setPassword(e.target.value)
+    }
+    
 
 
     return (
@@ -141,7 +225,7 @@ function SignUpForm() {
         <div><Error message={passwordError}/></div>
 
         <div>
-        <InputBox className="passwordInput" placeholder="password" value={password} id="passwordInput" onChange={(e)=>setPassword(e.target.value)} style={{border:passwordBorder}}></InputBox>
+        <InputBox className="passwordInput" placeholder="password" value={password} id="passwordInput" onChange={(e)=>checkLengthUpdatePassword(e)} style={{border:passwordBorder}}></InputBox>
         </div>
         <div><Error message={reenterPasswordError}/></div>
 
