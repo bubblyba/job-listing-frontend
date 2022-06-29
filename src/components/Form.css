@@ -5,7 +5,7 @@ body{
     justify-content: center;
     align-items: center;
     font-size: 1.2rem;
-    background-color: aliceblue;
+    background-image: url("https://firebasestorage.googleapis.com/v0/b/joblisting-f64bd.appspot.com/o/websiteBackground.png?alt=media&token=a72d1851-9ef2-4f43-bf28-916e948a1dd0");
 }
 .title{
     text-align: center;
