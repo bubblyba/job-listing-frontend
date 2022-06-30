@@ -159,7 +159,7 @@ else{
        
 
         <div>
-          <Button text="Sign Up" value="submit" onClick={handleClick}></Button>
+          <Button text="Login" value="submit" onClick={handleClick}></Button>
         </div>
         <div><Error message={loginError}/></div>
 
