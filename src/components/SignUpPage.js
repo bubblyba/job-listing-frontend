@@ -15,7 +15,6 @@ function Form() {
       <div className="title">Create an account or <button className="loginButton" onClick={routeChange}>Login</button></div>
       
       <SignUpForm/>
-      <div className="title">Forgot your password?</div>
 
       </div>
   );
