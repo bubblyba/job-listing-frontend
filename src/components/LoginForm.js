@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
  
 
   async function waitForResponse(user) {
-    let response = await fetch("http://localhost:8080/api/login",{
+    let response = await fetch("https://job-listing-rest.herokuapp.com/api/login",{
           method: "POST",
           headers: {"Content-Type":"application/json"},
           body: JSON.stringify(user)

@@ -16,7 +16,7 @@ function SignUpForm() {
  
 
   async function waitForResponse(user) {
-    let response = await fetch("http://localhost:8080/api/createUser",{
+    let response = await fetch("https://job-listing-rest.herokuapp.com/api/createUser",{
           method: "POST",
           headers: {"Content-Type":"application/json"},
           body: JSON.stringify(user)
