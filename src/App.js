@@ -5,6 +5,8 @@ import React from "react";
 import {BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import ErrorPage from './components/ErrorPage';
 import ServerError from './components/ServerError';
+import DashboardPage from './components/DashboardPage';
+import WorkerProfilePage from './components/WorkerProfilePage';
 
 
 function App() {
@@ -14,6 +16,8 @@ function App() {
         <Route path="/" element={<SignUpPage/>}/>
         <Route path="/signup" element={<SignUpPage/>}/>
         <Route path="/login" element={<LoginInPage/>}/>
+        <Route path="/dashboard" element={<DashboardPage/>} />
+        <Route path="workerProfile" element={<WorkerProfilePage/>} />
         <Route path="/error" element={<ErrorPage/>}/>
         <Route path="/internal" element={<ServerError/>}/>
 

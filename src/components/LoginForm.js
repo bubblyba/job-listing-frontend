@@ -6,12 +6,14 @@ import { RadioGroup, RadioButton } from 'react-radio-buttons';
 import validator from 'validator'
 import ErrorPage from "./ErrorPage";
 import { useNavigate } from "react-router-dom";
-
+import setToken from "../App"
     function LoginForm() {
   let navigate = useNavigate(); 
- 
+  
+  
 
   async function waitForResponse(user) {
+    sessionStorage.clear();
     let response = await fetch("https://job-listing-rest.herokuapp.com/api/login",{
           method: "POST",
           headers: {"Content-Type":"application/json"},
@@ -30,7 +32,16 @@ import { useNavigate } from "react-router-dom";
         setLoginError('Invalid Credentials');
         }
         else{
+
             console.log(response)
+            console.log(response.token)
+            console.log(response.username)
+
+            console.log(sessionStorage.setItem('token', response.token));
+            console.log(sessionStorage.setItem('username', response.username));
+
+            navigate('/dashboard');
+
         }
   
       }
