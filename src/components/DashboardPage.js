@@ -71,12 +71,37 @@ const DashboardPage = () => {
                   .then (response2=>response2.json())
                   sessionStorage.setItem('email', response2.email);
                   sessionStorage.setItem('password', response2.password);
-                  if(sessionStorage.getItem('userType') === "job")
-                    navigate('/workerProfile');
-                  else
-                    navigate('/dashboard');
+                  if(sessionStorage.getItem('userType') === "job"){
+                    let username = sessionStorage.getItem('email')
+                    let token = sessionStorage.getItem('accessToken')
+
+                    const creds3 = {username,token}
+                    console.log(creds3)
+                    let response3 = await fetch("https://job-listing-rest.herokuapp.com/api/getUserProfileCreated",{
+                        method: "POST",
+                        headers: {"Content-Type":"application/json"},
+                        body: JSON.stringify(creds3)
+                
+                        })
+                        .catch((error) => {
+                
+                            navigate("/internal")
+                    
+                        })
+                        .then (response3=>response3.json())
+                        console.log(response3)
+                        if(response3 === "invalid token")
+                            navigate('/login')
+                        else if(response3 === "internal issue")
+                            navigate("/internal")
+
+                        else if(response3 === false)
+                            navigate('/workerProfile');
+                        else
+                            navigate('/dashboard');
     
             }
+        }
       
           }
           
