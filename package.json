@@ -2,8 +2,11 @@
   "name": "job-listing-frontend",
   "version": "0.1.0",
   "private": true,
+  
   "engines": {
-    "node": "18.0.0"
+    "node": "18.0.0",
+    "npm": "8.6.0"
+
   },
   "dependencies": {
     "@rschpdr/react-money-input": "^1.0.0",
@@ -37,6 +40,7 @@
       "react-app/jest"
     ]
   },
+  
   "browserslist": {
     "production": [
       ">0.2%",
