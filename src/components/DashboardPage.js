@@ -47,7 +47,7 @@ const DashboardPage = () => {
 
             }
             else{
-    
+                console.log("here")
                 console.log(response)
                 console.log(response.username)
                 console.log(response.accessToken)
@@ -71,6 +71,7 @@ const DashboardPage = () => {
                   .then (response2=>response2.json())
                   sessionStorage.setItem('email', response2.email);
                   sessionStorage.setItem('password', response2.password);
+                  
                   if(sessionStorage.getItem('userType') === "job"){
                     let username = sessionStorage.getItem('email')
                     let token = sessionStorage.getItem('accessToken')
@@ -88,8 +89,9 @@ const DashboardPage = () => {
                             navigate("/internal")
                     
                         })
+
                         .then (response3=>response3.json())
-                        console.log(response3)
+                        console.log("theheh" + response3)
                         if(response3 === "invalid token")
                             navigate('/login')
                         else if(response3 === "internal issue")
