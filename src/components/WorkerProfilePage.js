@@ -173,12 +173,11 @@ const monthlyChangeHandler = value => {
                 </div>
                 <div>
               <div>
-                
+
               <Select className="select" options={options} value={locationValue} onChange={locationChangeHandler} placeholder="Location..."></Select>
               </div>
               <Select className="select" options={options} value={nationalityValue} onChange={nationalityChangeHandler} placeholder="Nationality..."></Select>
               <Select className="select" options={options} value={residenceValue} onChange={residenceChangeHandler} placeholder="Residence..."></Select>
-                
               
                 </div>
                 {/* <div>
