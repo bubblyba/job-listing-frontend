@@ -9,7 +9,7 @@ import "./Form.css"
 import CountrySelector from "./CountrySelector";
 import Select, { components } from 'react-select'
 import countryList from 'react-select-country-list'
-// import CurrencyInput from 'react-currency-input-field';
+import CurrencyInput from 'react-currency-input-field';
 
 function WorkerProfilePage() {
    
@@ -108,7 +108,7 @@ const monthlyChangeHandler = value => {
        
 
     }
-  
+
     async function updateProfileCreated(updatedConditions) {
         let response = await fetch("https://job-listing-rest.herokuapp.com/api/updateUserProfileCreated",{
               method: "POST",
@@ -155,6 +155,7 @@ const monthlyChangeHandler = value => {
     console.log(gender)
   }
   
+  
   return (
 
         <div>
@@ -178,12 +179,12 @@ const monthlyChangeHandler = value => {
               </div>
               <Select className="select" options={options} value={nationalityValue} onChange={nationalityChangeHandler} placeholder="Nationality..."></Select>
               <Select className="select" options={options} value={residenceValue} onChange={residenceChangeHandler} placeholder="Residence..."></Select>
-
+                
               
                 </div>
                 <div>
-
-                {/* <CurrencyInput
+                                
+                <CurrencyInput
                 className="moneyInput"
                 prefix="$"
                 id="input-example"
@@ -203,7 +204,7 @@ const monthlyChangeHandler = value => {
                 placeholder="Preffered Monthly Pay"
                 decimalsLimit={2}
                 onValueChange={monthlyChangeHandler}
-                /> */}
+                />
                 </div>
 
                 <div className="dropdown-container">
