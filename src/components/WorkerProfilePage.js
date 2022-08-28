@@ -9,7 +9,6 @@ import "./Form.css"
 import CountrySelector from "./CountrySelector";
 import Select, { components } from 'react-select'
 import countryList from 'react-select-country-list'
-import CurrencyInput from 'react-currency-input-field';
 
 function WorkerProfilePage() {
    
@@ -182,7 +181,7 @@ const monthlyChangeHandler = value => {
                 
               
                 </div>
-                <div>
+                {/* <div>
                                 
                 <CurrencyInput
                 className="moneyInput"
@@ -205,7 +204,7 @@ const monthlyChangeHandler = value => {
                 decimalsLimit={2}
                 onValueChange={monthlyChangeHandler}
                 />
-                </div>
+                </div> */}
 
                 <div className="dropdown-container">
                 <Select 
