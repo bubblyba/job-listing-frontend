@@ -6,6 +6,7 @@ import { RadioGroup, RadioButton } from 'react-radio-buttons';
 import validator from 'validator'
 import ErrorPage from "./ErrorPage";
 import { useNavigate } from "react-router-dom";
+import TextField from '@mui/material/TextField';
 
 
  
@@ -219,7 +220,7 @@ else{
       <form>
       <div className="form">
       <div><Error message={emailError}/></div>
-
+      
         <div>
         <InputBox className="emailInput" placeholder="email" value={email} id="emailInput" onChange={(e)=>setEmail(e.target.value)} style={{border:emailBorder}}></InputBox>
         </div>
