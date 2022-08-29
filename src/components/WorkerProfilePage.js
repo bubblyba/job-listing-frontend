@@ -3,18 +3,38 @@ import {useNavigate} from 'react-router-dom'
 import Button from "./Button";
 import InputBox from "./InputBox";
 import { RadioGroup, RadioButton } from 'react-radio-buttons';
-import CurrencyInput from 'react-currency-input-field';
 
 import React, { useEffect, useState,useMemo } from "react";
 import "./Form.css"
 import CountrySelector from "./CountrySelector";
 import Select, { components } from 'react-select'
 import countryList from 'react-select-country-list'
+import IntlCurrencyInput from "react-intl-currency-input"
+
 
 function WorkerProfilePage() {
    
     const [selectedOptions, setSelectedOptions] = useState();
-
+    const currencyConfig = {
+        locale: "pt-US",
+        formats: {
+          number: {
+            BRL: {
+              style: "currency",
+              currency: "USD",
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            },
+          },
+        },
+      };
+      const handleCurrencyChange = (event, value, maskedValue) => {
+        event.preventDefault();
+    
+        console.log(value); // value without mask (ex: 1234.56)
+        console.log(maskedValue); // masked value (ex: R$1234,56)
+      };
+          
   let navigate = useNavigate(); 
   const routeChange = () =>{ 
     let path = '/login'; 
@@ -181,14 +201,8 @@ const monthlyChangeHandler = value => {
               <Select className="select" options={options} value={residenceValue} onChange={residenceChangeHandler} placeholder="Residence..."></Select>
 
                 </div>
-                <CurrencyInput
-                prefix="$"
-  id="input-example"
-  name="input-name"
-  placeholder="Please enter a number"
-  decimalsLimit={2}
-  onValueChange={(value, name) => console.log(value, name)}
-/>
+                <IntlCurrencyInput currency="BRL" config={currencyConfig}
+            onChange={handleCurrencyChange} />
 
                 {/* <div>
                                 
