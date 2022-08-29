@@ -3,6 +3,7 @@ import {useNavigate} from 'react-router-dom'
 import Button from "./Button";
 import InputBox from "./InputBox";
 import { RadioGroup, RadioButton } from 'react-radio-buttons';
+import CurrencyInput from 'react-currency-input-field';
 
 import React, { useEffect, useState,useMemo } from "react";
 import "./Form.css"
@@ -180,7 +181,14 @@ const monthlyChangeHandler = value => {
               <Select className="select" options={options} value={residenceValue} onChange={residenceChangeHandler} placeholder="Residence..."></Select>
 
                 </div>
-               
+                <CurrencyInput
+                prefix="$"
+  id="input-example"
+  name="input-name"
+  placeholder="Please enter a number"
+  decimalsLimit={2}
+  onValueChange={(value, name) => console.log(value, name)}
+/>
 
                 {/* <div>
                                 
