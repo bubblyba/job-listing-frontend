@@ -9,7 +9,6 @@ import "./Form.css"
 import CountrySelector from "./CountrySelector";
 import Select, { components } from 'react-select'
 import countryList from 'react-select-country-list'
-import CurrencyFormat from 'react-currency-format';
 
 function WorkerProfilePage() {
    
@@ -181,8 +180,7 @@ const monthlyChangeHandler = value => {
               <Select className="select" options={options} value={residenceValue} onChange={residenceChangeHandler} placeholder="Residence..."></Select>
 
                 </div>
-                <CurrencyFormat className="moneyInput" placeholder="Preffered Annual Pay" thousandSeparator={true} prefix={'$'}  onValueChange={annualChangeHandler}/>
-                <CurrencyFormat className="moneyInput" placeholder="Preffered Monthly Pay" thousandSeparator={true} prefix={'$'}  onValueChange={monthlyChangeHandler}/>
+               
 
                 {/* <div>
                                 
