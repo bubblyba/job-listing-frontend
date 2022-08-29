@@ -16,7 +16,6 @@
     "currency.js": "^2.0.4",
     "react": "^18.2.0",
     "react-country-region-selector": "^3.6.1",
-    "react-currency-format": "^1.1.0",
     "react-dom": "^18.2.0",
     "react-multi-search-select": "^1.5.0",
     "react-number-format": "^4.9.3",
