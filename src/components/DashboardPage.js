@@ -6,7 +6,11 @@ const DashboardPage = () => {
     
     let navigate = useNavigate(); 
         useEffect(() => {
+            let isMounted = true
+
             getAccessToken();
+            return () => { isMounted = false }
+
         }, []);
     async function getAccessToken(){
 

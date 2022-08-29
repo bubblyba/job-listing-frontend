@@ -59,6 +59,8 @@ import setToken from "../App"
     const[loginError, setLoginError] = useState('');
 
      useEffect(() => {
+      let isMounted = true
+
       if(password.length < 6){
         setPasswordError("password must be at least 6 characters long")
         setPasswordBorder('2px solid #EC9E58');
@@ -79,17 +81,19 @@ import setToken from "../App"
         setEmailBorder('2px solid black');
 
         setEmailError('')
+        return () => { isMounted = false }
+
       }
       else{
         setEmailBorder('2px solid #EC9E58');
 
         setEmailError('Please enter a valid email')
+        return () => { isMounted = false }
+
       }
     },[password,email]);
     
-    React.useEffect(() => {
-      console.log("page initial render");
-    }, []);
+    
     
     
      function handleClick(e){

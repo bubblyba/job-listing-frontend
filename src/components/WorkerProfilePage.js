@@ -4,7 +4,7 @@ import Button from "./Button";
 import InputBox from "./InputBox";
 import { RadioGroup, RadioButton } from 'react-radio-buttons';
 
-import React, { useEffect, useState,useMemo } from "react";
+import React, {  useState,useMemo } from "react";
 import "./Form.css"
 import CountrySelector from "./CountrySelector";
 import Select, { components } from 'react-select'

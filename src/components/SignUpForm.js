@@ -76,9 +76,12 @@ function SignUpForm() {
     const[userTypeError, setUserTypeError] = useState('');
     
      useEffect(() => {
+      let isMounted = true
+
       if(password.length < 6){
         setPasswordError("password must be at least 6 characters long")
         setPasswordBorder('2px solid #EC9E58');
+        
 
       }
       else if(password.length === 0){
@@ -96,11 +99,15 @@ function SignUpForm() {
         setEmailBorder('2px solid black');
 
         setEmailError('')
+        return () => { isMounted = false }
+
       }
       else{
         setEmailBorder('2px solid #EC9E58');
 
         setEmailError('Please enter a valid email')
+        return () => { isMounted = false }
+
       }
     },[password,email]);
     function checkLength(){
