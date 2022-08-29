@@ -16,25 +16,33 @@ function WorkerProfilePage() {
    
     const [selectedOptions, setSelectedOptions] = useState();
     const currencyConfig = {
-        locale: "pt-US",
+        locale: "en-US",
         formats: {
           number: {
             BRL: {
               style: "currency",
               currency: "USD",
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 0,
             },
           },
         },
       };
-      const handleCurrencyChange = (event, value, maskedValue) => {
+      const handleAnnualPayChange = (event, value, maskedValue) => {
         event.preventDefault();
     
         console.log(value); // value without mask (ex: 1234.56)
+
         console.log(maskedValue); // masked value (ex: R$1234,56)
       };
           
+      const handleMonthlyPayChange = (event, value, maskedValue) => {
+        event.preventDefault();
+    
+        console.log(value); // value without mask (ex: 1234.56)
+
+        console.log(maskedValue); // masked value (ex: R$1234,56)
+      };
   let navigate = useNavigate(); 
   const routeChange = () =>{ 
     let path = '/login'; 
@@ -201,9 +209,16 @@ const monthlyChangeHandler = value => {
               <Select className="select" options={options} value={residenceValue} onChange={residenceChangeHandler} placeholder="Residence..."></Select>
 
                 </div>
-                <IntlCurrencyInput currency="BRL" config={currencyConfig}
-            onChange={handleCurrencyChange} />
+                <div className="title2">Preffered Monthly Pay</div>
 
+                <IntlCurrencyInput  className="moneyInput" currency="BRL" config={currencyConfig}
+            onChange={handleMonthlyPayChange} />
+            <div>
+            <div className="title2">Preffered Annual Pay</div>
+
+            <IntlCurrencyInput className="moneyInput" currency="BRL" config={currencyConfig}
+            onChange={handleAnnualPayChange} />
+            </div>
                 {/* <div>
                                 
                 <CurrencyInput
