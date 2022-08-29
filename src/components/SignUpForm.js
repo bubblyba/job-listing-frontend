@@ -123,9 +123,7 @@ function SignUpForm() {
       }
     }
     var userType = 0
-    React.useEffect(() => {
-      console.log("page initial render");
-    }, []);
+    
     
     function handleRadio(value){
       setJobType(value)
